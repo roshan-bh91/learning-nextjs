@@ -5,7 +5,12 @@ const ProductListing = () => {
       <h1>List of all products</h1>
       {[1, 2, 3, 100].map((productLink) => (
         <div key={productLink}>
-          <Link href={`/products/${productLink}`}>Product {productLink}</Link>
+          <Link
+            href={`/products/${productLink}`}
+            {...(productLink === 3 ? { replace: true } : {})}
+          >
+            Product {productLink}
+          </Link>
         </div>
       ))}
       <Link href="/">
