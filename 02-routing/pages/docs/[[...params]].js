@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 const DocsPage = () => {
   const router = useRouter();
   const { params = [] } = router.query;
-  console.log({ params });
   if (params.length === 2) {
     return (
       <h1>
