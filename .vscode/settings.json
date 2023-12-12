@@ -1,0 +1,5 @@
+{
+    "eslint.workingDirectories": [
+      "./03-1-next-prerendering"
+    ]
+  }
