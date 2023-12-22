@@ -21,7 +21,7 @@ export async function getStaticProps() {
   const jsonFormattedData = await apiResponse.json();
   return {
     props: {
-      postsList: jsonFormattedData.slice(0, 4),
+      postsList: jsonFormattedData.slice(0, 10),
     },
   };
 }
