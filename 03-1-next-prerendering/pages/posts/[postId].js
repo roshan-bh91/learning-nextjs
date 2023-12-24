@@ -28,7 +28,7 @@ export async function getStaticPaths() {
   const apiResponse = await fetch("https://jsonplaceholder.typicode.com/posts");
   const jsonFormattedData = await apiResponse.json();
   const paths = jsonFormattedData
-    .slice(0, 10)
+    .slice(0, 3)
     .map(({ id }) => ({ params: { postId: `${id}` } }));
   return {
     // paths: [
