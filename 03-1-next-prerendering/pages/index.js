@@ -4,6 +4,9 @@ const HomePage = () => {
     <>
       <h1>Home Page</h1>
       <Link href={"/users"}>Users Page</Link>
+      <div>
+        <Link href={'/posts'}>Posts Page</Link>
+      </div>
     </>
   );
 };
