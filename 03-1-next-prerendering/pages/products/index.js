@@ -18,11 +18,13 @@ const ProductsList = ({ products = [] }) => {
 export default ProductsList;
 
 export async function getStaticProps() {
+  console.log("Regeneration of product listing page");
   const productsApiResponse = await fetch("http://localhost:4000/products");
   const jsonFormattedData = await productsApiResponse.json();
   return {
     props: {
       products: jsonFormattedData,
     },
+    revalidate: 30,
   };
 }
