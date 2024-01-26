@@ -18,6 +18,8 @@ export default NewsArticlesList;
 export async function getServerSideProps() {
   const apiResponse = await fetch("http://localhost:4000/news");
   const data = await apiResponse.json();
+
+  console.log(`Pre rendering news articles list`);
   return {
     props: {
       articles: data,

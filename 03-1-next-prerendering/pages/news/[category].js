@@ -24,7 +24,9 @@ export async function getServerSideProps(context) {
   console.log(req.headers.cookie);
   res.setHeader("Set-Cookie", ["name=Vishwas"]);
 
-  console.log(query)
+  console.log(query);
+
+  console.log(`Pre rendering news articles for ${category}`);
   return {
     props: {
       articles: articlesList,
