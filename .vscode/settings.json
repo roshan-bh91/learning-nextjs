@@ -1,5 +1,6 @@
 {
     "eslint.workingDirectories": [
-      "./03-1-next-prerendering"
+      "./03-1-next-prerendering",
+      "./04-next-api"
     ]
   }
