@@ -3,6 +3,8 @@ import { useState } from "react";
 const CommentsListingPage = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [commentId, setCommentId] = useState();
+  const [isEditable, setIsEditable] = useState(false);
   const fetchComments = async () => {
     const response = await fetch("/api/comments");
     const commentsList = await response.json();
@@ -11,15 +13,37 @@ const CommentsListingPage = () => {
 
   const onFormSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("/api/comments", {
-      method: "POST",
-      body: JSON.stringify({
-        comment,
-      }),
+    if (isEditable) {
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: "POST",
+        body: JSON.stringify({ text: comment }),
+      });
+      fetchComments();
+    } else {
+      const response = await fetch("/api/comments", {
+        method: "POST",
+        body: JSON.stringify({
+          comment,
+        }),
+      });
+      const data = await response.json();
+      fetchComments();
+    }
+  };
+
+  const deleteComment = async (id) => {
+    await fetch(`/api/comments/${id}`, {
+      method: "DELETE",
     });
-    const data = await response.json();
     fetchComments();
   };
+
+  const updateComment = (id, currentText) => {
+    setIsEditable(true);
+    setComment(currentText);
+    setCommentId(id);
+  };
+
   return (
     <section>
       <h1>Comments Listing Page</h1>
@@ -35,7 +59,20 @@ const CommentsListingPage = () => {
       {comments.map(({ id, text }) => (
         <div key={id}>
           {id} {text}
-          <button>Delete Comment</button>
+          <button
+            onClick={() => {
+              deleteComment(id);
+            }}
+          >
+            Delete Comment
+          </button>
+          <button
+            onClick={() => {
+              updateComment(id, text);
+            }}
+          >
+            Update Comment
+          </button>
         </div>
       ))}
     </section>
