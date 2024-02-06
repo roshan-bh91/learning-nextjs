@@ -19,6 +19,7 @@ const CommentsListingPage = () => {
         body: JSON.stringify({ text: comment }),
       });
       fetchComments();
+      setComment('')
     } else {
       const response = await fetch("/api/comments", {
         method: "POST",
